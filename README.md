@@ -6,6 +6,6 @@ use
 ==========
 * Fork this repository and clone it.
 * Go to any refactoring project root folder.
-* execute npm install.
-* execute bower install.
-* execute karma start spec/karma.config.js to test your refactoring changes.
+* Execute `npm install.`
+* Execute `bower install.`
+* Execute `karma start spec/karma.config.js` to test your refactoring changes.
