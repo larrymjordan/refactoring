@@ -1,22 +1,30 @@
 angular.module('app',[])
 .factory('orderPrinter', function(){
+  function printBanner(){
+    var content = "**************************"+
+                  "***** Customer Owes ******"+
+                  "**************************";
+    return content;
+  }
+  function calculateOutstanding(orders){
+    var outstanding = 0;
+    orders.forEach(function(order){
+      outstanding = outstanding + order.amount;
+    });
+
+    return outstanding;
+  }
+  function printDetail(name, outstanding){
+    return  "name: " + name + "           " +
+            "oustanding: " + outstanding + "           ";
+
+  }
   return {
     printFor: function(customer){
-      // print banner
-      var content = "**************************"+
-                    "***** Customer Owes ******"+
-                    "**************************";
-
-      // calculate outstanding
-      var outstanding = 0;
-      customer.orders.forEach(function(order){
-        outstanding = outstanding + order.amount
-      })
-
-      //print details
-      content = content + "name: " + customer.name + "           ";
-      content = content + "oustanding: " + outstanding + "           ";
-      return content
+      var content = printBanner();
+      var outstanding = calculateOutstanding(customer.orders);
+      content = content + printDetail(customer.name, outstanding);
+      return content;
     }
-  }
-})
+  };
+});
